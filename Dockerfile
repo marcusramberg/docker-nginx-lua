@@ -1,5 +1,5 @@
 # Based on manual compile instructions at http://wiki.nginx.org/HttpLuaModule#Installation
-FROM ubuntu:14.04
+FROM centos:centos7
 
 ENV VER_NGINX_DEVEL_KIT=0.2.19
 ENV VER_LUA_NGINX_MODULE=0.9.16
@@ -14,20 +14,12 @@ ENV WEB_DIR ${NGINX_ROOT}/html
 ENV LUAJIT_LIB /usr/local/lib
 ENV LUAJIT_INC /usr/local/include/luajit-2.0
 
-RUN apt-get -qq update
-RUN apt-get -qq -y install wget
+RUN yum -y install  wget
 
 # ***** BUILD DEPENDENCIES *****
 
 # Common dependencies (Nginx and LUAJit)
-RUN apt-get -qq -y install make
-# Nginx dependencies
-RUN apt-get -qq -y install libpcre3
-RUN apt-get -qq -y install libpcre3-dev
-RUN apt-get -qq -y install zlib1g-dev
-RUN apt-get -qq -y install libssl-dev
-# LUAJit dependencies
-RUN apt-get -qq -y install gcc
+RUN yum -y install pcre-devel zlib-devel libssl-devel openssl-devel gcc make
 
 # ***** DOWNLOAD AND UNTAR *****
 
